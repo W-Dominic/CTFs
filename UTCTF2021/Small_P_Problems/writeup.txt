@@ -1,0 +1,27 @@
+#Dominic Wojewodka
+#03/14/2021
+#UTCTF 2021
+#"Small P Problems Writeup"
+
+The ctf gives us a set of numbers p,g,A,B which are all of the publicly known variables in Diffie Hellman key exchange
+Heres a good wikipedia link describing Diffie Hellman: https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange 
+Diffie Hellman is very hard to crack normally, but since the p that they give us is relatively small, we can brute force the shared secret key. 
+
+Part 1: 
+	Starting off we know four things things:
+		1) g^a(mod p) = A
+		2) g^b(mod p) = B
+		3) A^b(mod p) = B^a(mod p) = s
+		4) a<A and b<B
+	Knowing these things I made a short python function that checks all off the combinations of a and b until the conditions are satisfied
+	This worked for small numbers but, since this function is quadradic time complexity it was very slow and didnt work for big numbers
+
+Part 2:
+	I realized that we dont need to check every combination of a and b
+	We only need to check one of them, because alice and bob can both compute s using just their private keys. 
+	So, if we find a OR b, we will be able to compute s.
+	I made a new python function that goes through every integer that a may equal, checking if g^a(mod p) = A is satisfied
+	Once this integer is found, this is alices private key, and can be used to compute s.
+	This new function also has linear time complexity, so it works great.
+
+ 
