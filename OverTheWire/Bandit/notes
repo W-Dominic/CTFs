@@ -1,0 +1,35 @@
+Bandit 20->21
+		Network Setuid
+	-run the setuid binary to establish a connection to a random port
+	-on a seperate terminal use ncat -lc to listen to that port and send the password of the current level to it
+	-nc will return the password to the next level
+Bandit 21->22
+		Cron
+	- crontab -l doesnt work so we go into /etc/cron.d/ to find a script being run by bandit 22
+	- this script moves a file into the tmp/ directory
+	- we have access to tmp/ and this is where the password is
+Bandit 22->23
+		Cron
+	- same as last level, find the /etc/cron.d/ script that is running
+	-cat the script and use it to find the tmp directory where the password is held	
+Bandit 23->24
+		.sh script
+	-executible stored in /etc/cron.d has bandit24 premisions and scans a directory and runs and deletes all the files in it
+	-we make our own .sh script and place it in the directory so that the executible when cron runs it copys the next password into our tmp/i
+Bandit 24->25
+	make a shell script to create all possible passcodes
+	run cat allpass.txt | nc localhost 30002  to try all the passcodes on the port 30002 on localhost, to get the next password
+Bandit 25->26
+	the shell for bandit26 is not /bin/bash
+	the welcome message uses more to print
+	trigger more, and use more commands to enter vim and read /etc/bandit_pass/bandit26
+Bandit 26->27
+	use the method from before to get into bandit26
+	use $set shell=/bin/bash to get into the bandit26 bash
+	use the bandit27 binary to print the password
+Bandit 27->28
+	use the git clone command for the ssh link in your /tmp directory
+	password is in the readme
+Bandit 28->29
+	goal is to find the password through ssh in a git repo
+	
