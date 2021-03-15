@@ -14,7 +14,7 @@ Part 1:
 		3) A^b(mod p) = B^a(mod p) = s
 		4) a<A and b<B
 	Knowing these things I made a short python function that checks all off the combinations of a and b until the conditions are satisfied
-	This worked for small numbers but, since this function is quadradic time complexity it was very slow and didnt work for big numbers
+	This worked for small numbers but, since this function is O(n^2) time complexity it was very slow and didnt work for big numbers
 
 Part 2:
 	I realized that we dont need to check every combination of a and b
@@ -22,6 +22,6 @@ Part 2:
 	So, if we find a OR b, we will be able to compute s.
 	I made a new python function that goes through every integer that a may equal, checking if g^a(mod p) = A is satisfied
 	Once this integer is found, this is alices private key, and can be used to compute s.
-	This new function also has linear time complexity, so it works great.
+	This new function also has O(n) time complexity, so it works great.
 
  
