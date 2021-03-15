@@ -1,0 +1,31 @@
+***Various Vernacular***
+UTCTF 2021
+Dominic Wojewodka
+03-13-2021
+******
+The challenge gives us an encrypted flag and an encrypted piece of text
+We will be able to use this encryped piece of text to get the key and decipher the flag
+
+Part 1:
+It looks to me like some sort of substitution cipher was used
+I will start by doing frequency analysis on the text, but keeping in mind that the text may not be english 
+	Looking at a frequency analysis tool the 5 most used letters are: 
+		T-13.6%
+		F-11.9%
+		L-8.5%
+		W-8.5%
+		K-6.8%
+	Since the distribution isnt uniform, we know this cannot be a vigenere cipher, and is likely some kind of monoalphabetic substitution cipher
+	I have a hunch that this is spanish, since it has a similar frequency distribution
+	this text also has some 3 letter words: "xgf" "ERW" "wfr" "ELW"
+	Some common spanish 3 letter words are: "que" "los" "las" "del"
+	Maybe "ERW"->"los" and "ELW"->"las" or vice versa
+	lets translate these letters in these words using tr
+	this didnt help very much
+	lets try substituting the top 5 most used letters in spanish, matching them up with the cipherletter counterparts
+	E-13.1%
+	A-12.9%
+	O-9.3%
+	S-7.5%
+	N-6.8%
+
