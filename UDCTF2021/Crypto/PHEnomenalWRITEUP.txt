@@ -1,0 +1,12 @@
+#Dominic Wojewodka
+#03/19/2021
+#UDCTF 2021
+#Crypto - PHEnomenal
+
+nc challenges.ctfd.io 30004
+
+N^2 is given, we can use factordb.com to factor it.
+N^2 will be different for each run.
+
+We know the ciphertext for one given number and we are asked for the ciphertext of a new number
+we can factor N to find p and q, however factordb.com has no listed factors.
